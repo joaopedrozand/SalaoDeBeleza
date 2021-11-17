@@ -7,10 +7,12 @@ package Views;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -21,23 +23,52 @@ public class Conexao extends Config{
     
     public Connection conn = null;
     
-    public boolean getConnection(){
+    public static Connection getConnection(){
         try{
             Class.forName(DRIVER);
-            conn = DriverManager.getConnection(URL, USUARIO, SENHA);
-            return true;
-        }catch(ClassNotFoundException erro){
-            return false;
-        }catch(SQLException erro){
-            return false;
+            return DriverManager.getConnection(URL, USUARIO, SENHA);
+        }catch(ClassNotFoundException | SQLException ex){
+           throw new RuntimeException("Erro na conexão: ", ex);
         }
     }
     
-    public void close(){
-        try{
-            conn.close();
-        }catch(SQLException erro){
-            
+    public static void closeConnection(Connection con) {
+        try {
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void closeConnection(Connection con, PreparedStatement stmt) {
+
+        closeConnection(con);
+
+        try {
+
+            if (stmt != null) {
+                stmt.close();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs) {
+
+        closeConnection(con, stmt);
+
+        try {
+
+            if (rs != null) {
+                rs.close();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -5,7 +5,7 @@
  */
 package Controller.Helper;
 
-import Models.Usuario;
+import Model.bean.Usuario;
 import Views.Login;
 
 /**

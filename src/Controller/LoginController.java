@@ -6,7 +6,7 @@
 package Controller;
 
 import Controller.Helper.LoginHelper;
-import Models.Usuario;
+import Model.bean.Usuario;
 import Views.Login;
 
 /**
