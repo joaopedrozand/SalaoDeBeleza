@@ -6,7 +6,16 @@
 package Model.DAO;
 
 import Model.bean.Cliente;
+import Views.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +28,96 @@ public class ClienteDAO {
      * Insere um cliente dentro do banco de dados
      * @param cliente exige que seja passado um objeto do tipo cliente
      */
-    public void insert(Cliente cliente){
-        Banco.cliente.add(cliente);
+    public void create(Cliente cliente) {
+        
+        Connection con = Conexao.getConnection();
+        
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("INSERT INTO produto (descricao,qtd,preco)VALUES(?,?,?)");
+            stmt.setString(1, p.getDescricao());
+            stmt.setInt(2, p.getQtd());
+            stmt.setDouble(3, p.getPreco());
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+
+    }
+
+    public List<Produto> read() {
+
+        Connection con = ConnectionFactory.getConnection();
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Produto> produtos = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM produto");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Produto produto = new Produto();
+
+                produto.setId(rs.getInt("id"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setQtd(rs.getInt("qtd"));
+                produto.setPreco(rs.getDouble("preco"));
+                produtos.add(produto);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return produtos;
+
+    }
+    public List<Produto> readForDesc(String desc) {
+
+        Connection con = ConnectionFactory.getConnection();
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Produto> produtos = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM produto WHERE descricao LIKE ?");
+            stmt.setString(1, "%"+desc+"%");
+            
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Produto produto = new Produto();
+
+                produto.setId(rs.getInt("id"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setQtd(rs.getInt("qtd"));
+                produto.setPreco(rs.getDouble("preco"));
+                produtos.add(produto);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return produtos;
+
     }
     
     /**

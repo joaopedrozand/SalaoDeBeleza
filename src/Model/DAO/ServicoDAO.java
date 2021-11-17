@@ -45,9 +45,8 @@ public class ServicoDAO {
         } finally {
             Conexao.closeConnection(con, stmt);
         }
-        
-        /*public List<Servico> read() {
-
+    }
+    public List<Servico> read() {
         Connection con = Conexao.getConnection();
         
         PreparedStatement stmt = null;
@@ -64,73 +63,82 @@ public class ServicoDAO {
                 Servico servico = new Servico();
 
                 servico.setId(rs.getInt("id"));
-                servico.setDescricao(rs.getString("descricao"));
+                servico.setNome(rs.getString("nome"));
                 servico.setValor(rs.getDouble("valor"));
-                servico.add(servico);
+                servicos.add(servico);
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
 
-        return produtos;
+        return servicos;
 
     }
-    public List<Produto> readForDesc(String desc) {
+    public List<Servico> readForNome(String nome) {
 
         Connection con = Conexao.getConnection();
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<Produto> produtos = new ArrayList<>();
+        List<Servico> servicos = new ArrayList<>();
 
         try {
-            stmt = con.prepareStatement("SELECT * FROM produto WHERE descricao LIKE ?");
-            stmt.setString(1, "%"+desc+"%");
+            stmt = con.prepareStatement("SELECT * FROM servico WHERE nome LIKE ?");
+            stmt.setString(1, "%"+nome+"%");
             
             rs = stmt.executeQuery();
 
             while (rs.next()) {
 
-                Produto produto = new Produto();
+                Servico servico = new Servico();
 
-                produto.setId(rs.getInt("id"));
-                produto.setDescricao(rs.getString("descricao"));
-                produto.setQtd(rs.getInt("qtd"));
-                produto.setPreco(rs.getDouble("preco"));
-                produtos.add(produto);
+                servico.setId(rs.getInt("id"));
+                servico.setNome(rs.getString("nome"));
+                servico.setValor(rs.getDouble("valor"));
+                servicos.add(servico);
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
 
-        return produtos;
+        return servicos;
 
     }
-    }
-    }
+    
+        
     
     /**
      * Atualiza um Objeto no banco de dados
      * @param servico
      * @return 
      */
-    /*public boolean update(Servico servico){
-        
-        for (int i = 0; i < Banco.servico.size(); i++) {
-            if(idSaoIguais(Banco.servico.get(i),servico)){
-                Banco.servico.set(i, servico);
-                return true;
-            }
-        }
-        return false;      
+    public void update(Servico servico) {
 
+        Connection con = Conexao.getConnection();
+        
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE servico SET nome = ? ,valor = ? WHERE id = ?");
+            stmt.setString(1, servico.getNome());
+            stmt.setDouble(2, servico.getValor());
+            stmt.setInt(3, servico.getId());
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            Conexao.closeConnection(con, stmt);
+        }
     }
     
     /**
@@ -138,15 +146,28 @@ public class ServicoDAO {
      * @param servico
      * @return 
      */
-    /*public boolean delete(Servico servico){
-        for (Servico servicoLista : Banco.servico) {
-            if(idSaoIguais(servicoLista,servico)){
-                Banco.servico.remove(servicoLista);
-                return true;
-            }
+     public void delete(Servico servico) {
+
+        Connection con = Conexao.getConnection();
+        
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("DELETE FROM servico WHERE id = ?");
+            stmt.setInt(1, servico.getId());
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
+        } finally {
+            Conexao.closeConnection(con, stmt);
         }
-        return false;
+
     }
+
+}
     
     /**
      * Retorna um arraylist com todos os servicos do banco de dados
@@ -166,5 +187,3 @@ public class ServicoDAO {
         return servico.getId() ==  servicoAComparar.getId();
     }*/
     
-}
-}
