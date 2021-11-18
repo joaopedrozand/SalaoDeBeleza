@@ -6,8 +6,14 @@
 package Views;
 
 import Controller.LoginController;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import Model.bean.Usuario;
+import Model.DAO.UsuarioDAO;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.sql.Connection;
+import java.sql.*;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,17 +21,19 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    private final LoginController controller;
+    
     Conexao conn = new Conexao();
+    private final LoginController controller;
     
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login() throws SQLException {
         initComponents();
-        setTitle("Salão de Beleza");
+        setTitle("Salão de Beleza - LOGIN");
         controller = new LoginController(this);
+        
     }
 
     /**
@@ -108,12 +116,25 @@ public class Login extends javax.swing.JFrame {
 
     private void BotaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoEntrarActionPerformed
         
-        if(ctrl.verifLogin(CaixaUsuario.getText(), new String(CaixaSenha.getPassword()))){
-            MenuPrincipal menu = new MenuPrincipal();
-            menu.setVisible(true);
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Email ou senha inválido.", "Erro", JOptionPane.ERROR_MESSAGE);
+        try {
+            /*String login = CaixaUsuario.getText();
+            String senha = CaixaSenha.getText();
+            
+            Usuario usuario = new Usuario(login,senha);
+            
+            Connection con = Conexao.getConnection();
+            UsuarioDAO usuarioDao = new UsuarioDAO(con);
+            
+            usuario.setLogin(CaixaUsuario.getText());
+            usuario.setSenha(CaixaSenha.getText());
+            usuarioDao.create(usuario);
+            
+            CaixaUsuario.setText("");
+            CaixaSenha.setText("");*/
+            controller.autenticar();
+            this.dispose();
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BotaoEntrarActionPerformed
 
@@ -151,11 +172,34 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                try {
+                    new Login().setVisible(true);
+                } catch (SQLException ex) {
+                    java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
+    public JPasswordField getCaixaSenha() {
+        return CaixaSenha;
+    }
+
+    public void setCaixaSenha(JPasswordField CaixaSenha) {
+        this.CaixaSenha = CaixaSenha;
+    }
+
+    public JTextField getCaixaUsuario() {
+        return CaixaUsuario;
+    }
+
+    public void setCaixaUsuario(JTextField CaixaUsuario) {
+        this.CaixaUsuario = CaixaUsuario;
+    }
+
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoEntrar;
     private javax.swing.JPasswordField CaixaSenha;
@@ -167,25 +211,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel PalavraUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public void exibeMensagem(String mensagem) {
-        JOptionPane.showMessageDialog(null, mensagem);
-    }
-
-    public JLabel getPalavraSenha() {
-        return PalavraSenha;
-    }
-
-    public void setPalavraSenha(JLabel PalavraSenha) {
-        this.PalavraSenha = PalavraSenha;
-    }
-
-    public JLabel getPalavraUsuario() {
-        return PalavraUsuario;
-    }
-
-    public void setPalavraUsuario(JLabel PalavraUsuario) {
-        this.PalavraUsuario = PalavraUsuario;
-    }
+ 
 
     
     

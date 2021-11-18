@@ -36,8 +36,8 @@ public class UsuarioDAO {
         PreparedStatement stmt = null;
          
          try {
-            stmt = con.prepareStatement("INSERT INTO login (usuario,senha)VALUES(?,?)");
-            stmt.setString(1, usuario.getUsuario());
+            stmt = con.prepareStatement("INSERT INTO login (login,senha)VALUES(?,?)");
+            stmt.setString(1, usuario.getLogin());
             stmt.setString(2, usuario.getSenha());
 
             stmt.executeUpdate();
@@ -49,5 +49,19 @@ public class UsuarioDAO {
             Conexao.closeConnection(con, stmt);
         }
     }
+
+    public boolean existeNoBancoPorUsuarioESenha(Usuario usuario) throws SQLException {
+        String sql = "SELECT * FROM login WHERE login = '"+usuario.getLogin()+"' AND senha = '"+usuario.getSenha()+"';";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.execute();
+        
+        ResultSet resultSet = statement.getResultSet();
+        
+        return resultSet.next();
+       
+        
+    }
+
+    
      }
 

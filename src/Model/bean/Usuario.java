@@ -11,22 +11,17 @@ import java.util.Date;
  *
  * @author Ana
  */
-public class Usuario extends Pessoa{
+public class Usuario {
     
-    protected String senha;
-    protected String nivelAcesso;
-    private String usuario;
+    private String senha;
+    private String login;
 
-    public Usuario(int id, String usuario, String senha) {
-        super(id, usuario);
+    public Usuario(String login, String senha) {
         this.senha = senha;
+        this.login = login;
     }
 
-    public Usuario(String senha, String nivelAcesso, int id, String nome, char sexo, String dataNascimento, String telefone, String email, String rg) {
-        super(id, nome, sexo, dataNascimento, telefone, email, rg);
-        this.senha = senha;
-        this.nivelAcesso = nivelAcesso;
-    }
+    
 
     public String getSenha() {
         return senha;
@@ -36,20 +31,14 @@ public class Usuario extends Pessoa{
         this.senha = senha;
     }
 
-    public String getNivelAcesso() {
-        return nivelAcesso;
+
+
+    public String getLogin() {
+        return login;
     }
 
-    public void setNivelAcesso(String nivelAcesso) {
-        this.nivelAcesso = nivelAcesso;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
    

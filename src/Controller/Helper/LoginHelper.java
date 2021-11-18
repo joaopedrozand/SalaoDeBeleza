@@ -14,7 +14,7 @@ import Views.Login;
  */
 public class LoginHelper {
     
-    private final Login view;
+    /*private final Login view;
 
     public LoginHelper(Login view) {
         this.view = view;
@@ -39,5 +39,5 @@ public class LoginHelper {
     public void limparTela(){
        view.getPalavraUsuario().setText("");
        view.getPalavraSenha().setText("");
-    }
+    }*/
 }
