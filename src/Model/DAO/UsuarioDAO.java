@@ -8,47 +8,46 @@ package Model.DAO;
 import Model.bean.Usuario;
 import Views.Conexao;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author tiago
+ * @author Ana
  */
 public class UsuarioDAO {
     
-    public boolean checkLogin(String usuario, String senha) {
-
+    
+    private final Connection connection;
+    
+     public UsuarioDAO(Connection connection) {
+         this.connection = connection;   
+     }
+     
+     public void create(Usuario usuario){
         Connection con = Conexao.getConnection();
         PreparedStatement stmt = null;
-        ResultSet rs = null;
+         
+         try {
+            stmt = con.prepareStatement("INSERT INTO login (usuario,senha)VALUES(?,?)");
+            stmt.setString(1, usuario.getUsuario());
+            stmt.setString(2, usuario.getSenha());
 
-        boolean check = false;
+            stmt.executeUpdate();
 
-        try {
-
-            stmt = con.prepareStatement("SELECT * FROM login WHERE usuario = ? and senha = ?");
-            stmt.setString(1, usuario);
-            stmt.setString(2, senha);
-
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-
-                
-                check = true;
-            }
-
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
         } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar!"+ex);
         } finally {
-            ConnectionFactory.closeConnection(con, stmt, rs);
+            Conexao.closeConnection(con, stmt);
         }
-
-        return check;
-
     }
-}
+     }
+

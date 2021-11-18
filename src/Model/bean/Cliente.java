@@ -11,22 +11,55 @@ import java.util.Date;
  *
  * @author Ana
  */
-public class Cliente extends Pessoa{
+public class Cliente {
     
     private String endereco;
     private String cep;
+    private String cidade;
+    private String email;
+    private String nome;
+    private int id;
 
-    public Cliente(String endereco, String cep, int id, String nome, char sexo, String dataNascimento, String telefone, String email, String rg) {
-        super(id, nome, sexo, dataNascimento, telefone, email, rg);
-        this.endereco = endereco;
-        this.cep = cep;
+    public Cliente(String nome, String email, String cidade ) {
+        this.cidade = cidade;
+        this.email = email;
+        this.nome = nome;
     }
 
-    public Cliente(int id, String nome, String endereco, String cep ) {
-        super(id, nome);
-        this.endereco = endereco;
-        this.cep = cep;
+    
+
+    public String getNome() {
+        return nome;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
+
+   
+
+    
+  
 
     public String getEndereco() {
         return endereco;
@@ -43,5 +76,17 @@ public class Cliente extends Pessoa{
     public void setCep(String cep) {
         this.cep = cep;
     }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    
+
+    
  
 }

@@ -17,7 +17,7 @@ public class Login extends javax.swing.JFrame {
 
     private final LoginController controller;
     Conexao conn = new Conexao();
-    Controle ctrl = new Controle();
+    
 
     /**
      * Creates new form Login

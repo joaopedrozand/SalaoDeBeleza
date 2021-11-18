@@ -8,6 +8,7 @@ package Model.DAO;
 import Model.bean.Servico;
 import Views.Conexao;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +24,13 @@ import javax.swing.JOptionPane;
  */
 public class ServicoDAO {
     
-    
+      private final Connection connection;
+  
+       public ServicoDAO(Connection connection) {
+         this.connection = connection;  
+         
+
+     }
     /**
      * Insere um servico dentro do banco de dados
      * @param servico exige que seja passado um objeto do tipo servico
@@ -46,71 +53,7 @@ public class ServicoDAO {
             Conexao.closeConnection(con, stmt);
         }
     }
-    public List<Servico> read() {
-        Connection con = Conexao.getConnection();
-        
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        List<Servico> servicos = new ArrayList<>();
-
-        try {
-            stmt = con.prepareStatement("SELECT * FROM servico");
-            rs = stmt.executeQuery();
-
-            while (rs.next()) {
-
-                Servico servico = new Servico();
-
-                servico.setId(rs.getInt("id"));
-                servico.setNome(rs.getString("nome"));
-                servico.setValor(rs.getDouble("valor"));
-                servicos.add(servico);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ServicoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            Conexao.closeConnection(con, stmt, rs);
-        }
-
-        return servicos;
-
-    }
-    public List<Servico> readForNome(String nome) {
-
-        Connection con = Conexao.getConnection();
-        
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        List<Servico> servicos = new ArrayList<>();
-
-        try {
-            stmt = con.prepareStatement("SELECT * FROM servico WHERE nome LIKE ?");
-            stmt.setString(1, "%"+nome+"%");
-            
-            rs = stmt.executeQuery();
-
-            while (rs.next()) {
-
-                Servico servico = new Servico();
-
-                servico.setId(rs.getInt("id"));
-                servico.setNome(rs.getString("nome"));
-                servico.setValor(rs.getDouble("valor"));
-                servicos.add(servico);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ServicoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            Conexao.closeConnection(con, stmt, rs);
-        }
-
-        return servicos;
-
-    }
+    
     
         
     

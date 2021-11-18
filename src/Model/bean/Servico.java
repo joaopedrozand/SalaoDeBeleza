@@ -15,6 +15,13 @@ public class Servico {
     private String nome;
     private double valor;
 
+    public Servico(String nome, double valor) {
+        this.nome = nome;
+        this.valor = valor;
+    }
+
+   
+
     
 
     public int getId() {
@@ -41,8 +48,5 @@ public class Servico {
         this.valor = valor;
     }
     
-    @Override
-    public String toString() {
-        return getNome(); 
-    }
+    
 }

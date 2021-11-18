@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Views;
+/*package Views;
 
 import java.sql.*;
 /**
  *
  * @author Ana
  */
-public class Teste extends Config{
+/*public class Teste extends Config{
     
     public boolean Login(String email, String senha){
         Conexao conn = new Conexao();
@@ -25,4 +25,5 @@ public class Teste extends Config{
         }
     }
     
-}
+}*/
+    

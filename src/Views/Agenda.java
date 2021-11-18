@@ -5,11 +5,15 @@
  */
 package Views;
 
+import Controller.AgendaController;
+
 /**
  *
  * @author Ana
  */
 public class Agenda extends javax.swing.JFrame {
+
+    private final AgendaController controller;
 
     /**
      * Creates new form Agenda
@@ -17,6 +21,8 @@ public class Agenda extends javax.swing.JFrame {
     public Agenda() {
         initComponents();
         setTitle("Salão de Beleza");
+        controller = new AgendaController(this);
+        iniciar();
     }
 
     /**
@@ -41,7 +47,7 @@ public class Agenda extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nome");
 
@@ -196,4 +202,8 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private void iniciar() {
+       this.controller.atualizaTabela();
+    }
 }

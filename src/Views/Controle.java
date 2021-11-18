@@ -11,13 +11,13 @@ package Views;
  */
 import java.sql.*;
 
-public class Controle {
+/*public class Controle {
     public static Conexao db = new Conexao();
     ResultSet resultados;
     
     public boolean verifLogin(String email, String senha){
         try{
-            resultados = db.consulta("SELECT * FROM Login WHERE email = "+email+";");
+            resultados = db.("SELECT * FROM Login WHERE email = "+email+";");
             System.out.println("chegou aqui");
             String senharesult=null;
             while(resultados.next()){
