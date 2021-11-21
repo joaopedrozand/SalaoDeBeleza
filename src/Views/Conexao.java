@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -21,7 +22,10 @@ import java.util.logging.Logger;
  */
 public class Conexao extends Config{
     
-    public Connection conn = null;
+    public Connection conn;
+    public Statement stm;
+    public ResultSet rs;
+    
     
     public static Connection getConnection(){
         try{
@@ -29,6 +33,15 @@ public class Conexao extends Config{
             return DriverManager.getConnection(URL, USUARIO, SENHA);
         }catch(ClassNotFoundException | SQLException ex){
            throw new RuntimeException("Erro na conexão: ", ex);
+        }
+    }
+    
+    public void executaSQL(String sql){
+        try{
+            stm = conn.createStatement(rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY );
+            rs = stm.executeQuery(sql);
+        }catch(SQLException ex){
+            //JOptionPane.showMessageDialog(null, "Erro de ExecutaSQL!\n" + ex.getMessage());
         }
     }
     
@@ -42,6 +55,7 @@ public class Conexao extends Config{
         }
     }
 
+       
     public static void closeConnection(Connection con, PreparedStatement stmt) {
 
         closeConnection(con);
@@ -71,4 +85,7 @@ public class Conexao extends Config{
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+   
+
 }

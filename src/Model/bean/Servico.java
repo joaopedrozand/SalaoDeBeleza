@@ -15,10 +15,13 @@ public class Servico {
     private String nome;
     private double valor;
 
-    public Servico(String nome, double valor) {
-        this.nome = nome;
-        this.valor = valor;
-    }
+    
+
+    
+
+  
+
+    
 
    
 
@@ -36,7 +39,7 @@ public class Servico {
         return nome;
     }
 
-    public void setNome(String descricao) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 

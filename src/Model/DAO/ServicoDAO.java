@@ -31,6 +31,12 @@ public class ServicoDAO {
          
 
      }
+
+    public ServicoDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     /**
      * Insere um servico dentro do banco de dados
      * @param servico exige que seja passado um objeto do tipo servico
@@ -110,7 +116,40 @@ public class ServicoDAO {
 
     }
 
+     public List<Servico> read(){
+
+    Connection con = Conexao.getConnection();
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    
+    List<Servico> servicos = new ArrayList<>();
+    
+    try{
+        stmt = con.prepareStatement("SELECT * FROM servico");
+        rs = stmt.executeQuery();
+        
+        while(rs.next()){
+            Servico servico = new Servico();
+            
+            servico.setId(rs.getInt("id"));
+            servico.setNome(rs.getString("nome"));
+            servico.setValor(rs.getDouble("valor"));
+            servicos.add(servico);
+        }
+        
+    }catch(SQLException ex){
+        Logger.getLogger(ServicoDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }finally{
+        Conexao.closeConnection(con,stmt, rs);
+    }
+    
+    return servicos;
+    
 }
+     
+}
+
+
     
     /**
      * Retorna um arraylist com todos os servicos do banco de dados
