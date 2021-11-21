@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author tiago
+ * @author Ana
  */
 public class ServicoDAO {
     

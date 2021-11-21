@@ -15,18 +15,6 @@ public class Servico {
     private String nome;
     private double valor;
 
-    
-
-    
-
-  
-
-    
-
-   
-
-    
-
     public int getId() {
         return id;
     }

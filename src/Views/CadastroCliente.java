@@ -128,7 +128,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         String email = txtEmail.getText();
         String cidade = txtCidade.getText();
         
-        Cliente cliente = new Cliente(nome, email, cidade);
+        Cliente cliente = new Cliente();
         
         Connection con = Conexao.getConnection();
         ClienteDAO clienteDao = new ClienteDAO(con);

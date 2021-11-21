@@ -13,18 +13,12 @@ import java.util.Date;
  */
 public class Cliente {
     
-    private String endereco;
-    private String cep;
     private String cidade;
     private String email;
     private String nome;
     private int id;
 
-    public Cliente(String nome, String email, String cidade ) {
-        this.cidade = cidade;
-        this.email = email;
-        this.nome = nome;
-    }
+    
 
     
 
@@ -44,7 +38,6 @@ public class Cliente {
         this.id = id;
     }
 
-    
 
     public String getEmail() {
         return email;
@@ -52,29 +45,6 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    
-
-   
-
-    
-  
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
     }
 
     public String getCidade() {
