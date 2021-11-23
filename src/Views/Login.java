@@ -131,7 +131,6 @@ public class Login extends javax.swing.JFrame {
             CaixaUsuario.setText("");
             CaixaSenha.setText("");*/
             controller.autenticar();
-            this.dispose();
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

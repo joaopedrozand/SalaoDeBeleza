@@ -22,8 +22,5 @@ public class AgendaController {
         this.view = view;
     }
    
-    public void atualizaTabela(){
-        AgendamentoDAO agendamentoDAO = new AgendamentoDAO();
-        //ArrayList<Agendamento> agendamentos = agendamentoDAO.selectAll();
-    }
+    
 }

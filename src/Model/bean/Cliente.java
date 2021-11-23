@@ -55,6 +55,11 @@ public class Cliente {
         this.cidade = cidade;
     }
 
+    @Override
+    public String toString() {
+        return getNome(); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
     

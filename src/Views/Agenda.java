@@ -7,27 +7,39 @@ package Views;
 
 import Controller.AgendaController;
 import Model.DAO.AgendamentoDAO;
+import Model.DAO.ClienteDAO;
+import Model.DAO.ServicoDAO;
 import Model.bean.Agendamento;
+import Model.bean.Cliente;
+import Model.bean.Servico;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 /**
  *
  * @author Ana
  */
 public class Agenda extends javax.swing.JFrame {
-
-    private final AgendaController controller;
+Conexao conecta = new Conexao();
+     Connection con = Conexao.getConnection();
+     PreparedStatement stmt = null;
 
     /**
      * Creates new form Agenda
      */
     public Agenda() {
         initComponents();
-        setTitle("Salão de Beleza");
+        setTitle("Salão de Beleza - Agenda");
+        Connection con = Conexao.getConnection();
+        ClienteDAO dao = new ClienteDAO(con);
+        ServicoDAO sdao = new ServicoDAO(con);
+        ServicoDAO cdao = new ServicoDAO(con);
         
-        AgendamentoDAO dao = new AgendamentoDAO();
-        
-        for(Agendamento a: dao.read()){
+        for(Cliente a: dao.read()){
             CaixaNome.addItem(a);
+        }
+        for(Servico s: sdao.read()){
+            CaixaServico.addItem(s);
         }
     }
 
@@ -45,135 +57,123 @@ public class Agenda extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BotaoCadastrar = new javax.swing.JButton();
+        BotaoVisualizaAgenda = new javax.swing.JButton();
         CaixaNome = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        CaixaData = new javax.swing.JFormattedTextField();
         CaixaServico = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        CaixaHora = new javax.swing.JTextField();
         CaixaValor = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nome");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 71, -1, -1));
 
         jLabel2.setText("Valor R$");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 151, -1, -1));
 
         jLabel3.setText("Serviço");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 111, -1, -1));
 
         jLabel4.setText("Horário");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 198, 53, -1));
 
         jLabel5.setText("Data");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 236, 47, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Agendar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCadastrar.setBackground(new java.awt.Color(255, 51, 51));
+        BotaoCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        BotaoCadastrar.setText("Agendar");
+        BotaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotaoCadastrarActionPerformed(evt);
             }
         });
+        getContentPane().add(BotaoCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
+
+        BotaoVisualizaAgenda.setBackground(new java.awt.Color(255, 51, 51));
+        BotaoVisualizaAgenda.setForeground(new java.awt.Color(255, 255, 255));
+        BotaoVisualizaAgenda.setText("Ver Agendamentos");
+        BotaoVisualizaAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoVisualizaAgendaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotaoVisualizaAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
 
         CaixaNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CaixaNomeActionPerformed(evt);
             }
         });
+        getContentPane().add(CaixaNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 67, 226, -1));
+        getContentPane().add(CaixaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 233, 227, -1));
 
-        CaixaServico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Corte de Cabelo", "Escova Progressiva", "Mão", "Pé", "Mão e Pé" }));
+        getContentPane().add(CaixaServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 107, 226, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Agenda");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 27, -1, -1));
+        getContentPane().add(CaixaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 195, 227, -1));
 
-        CaixaValor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Corte de Cabelo", "Escova Progressiva", "Mão", "Pé", "Mão e Pé" }));
+        CaixaValor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10,00", "15,00", "20,00", "80,00", "90,00", "140,00" }));
+        CaixaValor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CaixaValorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CaixaValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 147, 226, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(CaixaValor, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(218, 218, 218))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(23, 23, 23)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(CaixaServico, 0, 226, Short.MAX_VALUE)
-                                            .addComponent(CaixaNome, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(jLabel6)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(CaixaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(CaixaServico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(CaixaValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\HDD\\Desktop\\unnamed.jpg")); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 320));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       VisualizaAgendamentos visuAgenda = new VisualizaAgendamentos();
-       visuAgenda.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void BotaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarActionPerformed
+       Object nome_cliente =  CaixaNome.getSelectedItem();
+       Object nome_servico =  CaixaServico.getSelectedItem();
+       Object valor = CaixaValor.getSelectedItem();
+       String data = CaixaData.getText();
+       String hora = CaixaHora.getText();
+        
+        Agendamento agendamento = new Agendamento();
+        
+        Connection con = Conexao.getConnection();
+        AgendamentoDAO agendamentoDao = new AgendamentoDAO(con);
+        
+        agendamento.setCliente(CaixaNome.getSelectedItem());
+        agendamento.setServico(CaixaServico.getSelectedItem());       
+        agendamento.setValor(CaixaValor.getSelectedItem());  
+        agendamento.setData(CaixaData.getText()); 
+        agendamento.setHora(CaixaHora.getText()); 
+        agendamentoDao.create(agendamento);
+        
+        CaixaNome.setSelectedItem("");
+        CaixaServico.setSelectedItem("");
+        CaixaValor.setSelectedItem("");
+        CaixaData.setText("");
+        CaixaHora.setText("");
+    }//GEN-LAST:event_BotaoCadastrarActionPerformed
 
     private void CaixaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CaixaNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CaixaNomeActionPerformed
+
+    private void CaixaValorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CaixaValorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CaixaValorActionPerformed
+
+    private void BotaoVisualizaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoVisualizaAgendaActionPerformed
+        // TODO add your handling code here:
+        VisualizaAgendamentos visuAgenda = new VisualizaAgendamentos();
+        visuAgenda.setVisible(true);
+    }//GEN-LAST:event_BotaoVisualizaAgendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,21 +211,21 @@ public class Agenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoCadastrar;
+    private javax.swing.JButton BotaoVisualizaAgenda;
+    private javax.swing.JFormattedTextField CaixaData;
+    private javax.swing.JTextField CaixaHora;
     private javax.swing.JComboBox<Object> CaixaNome;
-    private javax.swing.JComboBox<String> CaixaServico;
-    private javax.swing.JComboBox<String> CaixaValor;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JComboBox<Object> CaixaServico;
+    private javax.swing.JComboBox<Object> CaixaValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 
-    private void iniciar() {
-       this.controller.atualizaTabela();
-    }
+    
 }
