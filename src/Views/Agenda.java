@@ -58,67 +58,66 @@ Conexao conecta = new Conexao();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         BotaoCadastrar = new javax.swing.JButton();
-        BotaoVisualizaAgenda = new javax.swing.JButton();
         CaixaNome = new javax.swing.JComboBox<>();
         CaixaData = new javax.swing.JFormattedTextField();
         CaixaServico = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         CaixaHora = new javax.swing.JTextField();
         CaixaValor = new javax.swing.JComboBox<>();
+        BotaoCadastrar1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nome");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 71, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Nome**");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 71, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Valor R$");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 151, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 151, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Serviço");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 111, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 111, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Horário");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 198, 53, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 198, 53, -1));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Data");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 236, 47, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 236, 47, -1));
 
         BotaoCadastrar.setBackground(new java.awt.Color(255, 51, 51));
         BotaoCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        BotaoCadastrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\HDD\\Desktop\\SalaoDeBeleza\\src\\Imagens\\Add-icon.png")); // NOI18N
         BotaoCadastrar.setText("Agendar");
         BotaoCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoCadastrarActionPerformed(evt);
             }
         });
-        getContentPane().add(BotaoCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
-
-        BotaoVisualizaAgenda.setBackground(new java.awt.Color(255, 51, 51));
-        BotaoVisualizaAgenda.setForeground(new java.awt.Color(255, 255, 255));
-        BotaoVisualizaAgenda.setText("Ver Agendamentos");
-        BotaoVisualizaAgenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoVisualizaAgendaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(BotaoVisualizaAgenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
+        getContentPane().add(BotaoCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 130, 30));
 
         CaixaNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CaixaNomeActionPerformed(evt);
             }
         });
-        getContentPane().add(CaixaNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 67, 226, -1));
-        getContentPane().add(CaixaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 233, 227, -1));
+        getContentPane().add(CaixaNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 67, 226, -1));
+        getContentPane().add(CaixaData, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 227, -1));
 
-        getContentPane().add(CaixaServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 107, 226, -1));
+        getContentPane().add(CaixaServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 226, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Agenda");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 27, -1, -1));
-        getContentPane().add(CaixaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 195, 227, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
+        getContentPane().add(CaixaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 227, -1));
 
         CaixaValor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10,00", "15,00", "20,00", "80,00", "90,00", "140,00" }));
         CaixaValor.addActionListener(new java.awt.event.ActionListener() {
@@ -126,10 +125,36 @@ Conexao conecta = new Conexao();
                 CaixaValorActionPerformed(evt);
             }
         });
-        getContentPane().add(CaixaValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 147, 226, -1));
+        getContentPane().add(CaixaValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 226, -1));
+
+        BotaoCadastrar1.setBackground(new java.awt.Color(255, 51, 51));
+        BotaoCadastrar1.setForeground(new java.awt.Color(255, 255, 255));
+        BotaoCadastrar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\HDD\\Desktop\\SalaoDeBeleza\\src\\Imagens\\Trash-icon.png")); // NOI18N
+        BotaoCadastrar1.setText("Excluir");
+        BotaoCadastrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastrar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BotaoCadastrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 130, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\HDD\\Desktop\\unnamed.jpg")); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 320));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 330));
+
+        jMenu1.setText("Agendamento");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon("C:\\Users\\HDD\\Desktop\\SalaoDeBeleza\\src\\Imagens\\calendar-icon.png")); // NOI18N
+        jMenuItem1.setText("Visualizar Agendamentos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
@@ -169,11 +194,15 @@ Conexao conecta = new Conexao();
         // TODO add your handling code here:
     }//GEN-LAST:event_CaixaValorActionPerformed
 
-    private void BotaoVisualizaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoVisualizaAgendaActionPerformed
+    private void BotaoCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrar1ActionPerformed
         // TODO add your handling code here:
-        VisualizaAgendamentos visuAgenda = new VisualizaAgendamentos();
-        visuAgenda.setVisible(true);
-    }//GEN-LAST:event_BotaoVisualizaAgendaActionPerformed
+    }//GEN-LAST:event_BotaoCadastrar1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+         VisualizaAgendamentos visuAgenda = new VisualizaAgendamentos();
+         visuAgenda.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,7 +241,7 @@ Conexao conecta = new Conexao();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCadastrar;
-    private javax.swing.JButton BotaoVisualizaAgenda;
+    private javax.swing.JButton BotaoCadastrar1;
     private javax.swing.JFormattedTextField CaixaData;
     private javax.swing.JTextField CaixaHora;
     private javax.swing.JComboBox<Object> CaixaNome;
@@ -225,6 +254,9 @@ Conexao conecta = new Conexao();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 
     

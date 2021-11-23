@@ -102,8 +102,8 @@ public class ServicoDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("DELETE FROM servico WHERE id = ?");
-            stmt.setInt(1, servico.getId());
+            stmt = con.prepareStatement("DELETE FROM servico WHERE nome = ?");
+            stmt.setString(1, servico.getNome());
 
             stmt.executeUpdate();
 

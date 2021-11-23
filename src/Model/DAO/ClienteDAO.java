@@ -65,11 +65,11 @@ public class ClienteDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE cliente SET nome = ? ,email = ?, cidade = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE cliente SET nome = ? ,email = ?, cidade = ? WHERE nome = ?");
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getEmail());
             stmt.setString(3, cliente.getCidade());
-            stmt.setInt(4, cliente.getId());
+            stmt.setString(4, cliente.getNome());
 
             stmt.executeUpdate();
 
@@ -93,8 +93,8 @@ public class ClienteDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("DELETE FROM cliente WHERE id = ?");
-            stmt.setInt(1, cliente.getId());
+            stmt = con.prepareStatement("DELETE FROM cliente WHERE nome = ?");
+            stmt.setString(1, cliente.getNome());
 
             stmt.executeUpdate();
 
