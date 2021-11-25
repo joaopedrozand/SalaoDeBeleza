@@ -48,7 +48,7 @@ public class ServicoDAO {
         try {
             stmt = con.prepareStatement("INSERT INTO servico (nome,valor)VALUES(?,?)");
             stmt.setString(1, servico.getNome());
-            stmt.setDouble(2, servico.getValor());
+            stmt.setString(2, servico.getValor());
 
             stmt.executeUpdate();
 
@@ -77,7 +77,7 @@ public class ServicoDAO {
         try {
             stmt = con.prepareStatement("UPDATE servico SET nome = ? ,valor = ? WHERE id = ?");
             stmt.setString(1, servico.getNome());
-            stmt.setDouble(2, servico.getValor());
+            stmt.setString(2, servico.getValor());
             stmt.setInt(3, servico.getId());
 
             stmt.executeUpdate();
@@ -133,7 +133,7 @@ public class ServicoDAO {
             
             servico.setId(rs.getInt("id"));
             servico.setNome(rs.getString("nome"));
-            servico.setValor(rs.getDouble("valor"));
+            servico.setValor(rs.getString("valor"));
             servicos.add(servico);
         }
         

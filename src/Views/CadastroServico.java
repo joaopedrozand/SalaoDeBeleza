@@ -103,7 +103,7 @@ public class CadastroServico extends javax.swing.JFrame {
         ServicoDAO servicoDao = new ServicoDAO(con);
         
         servico.setNome(txtNome.getText());
-        servico.setValor(Double.parseDouble(txtValor.getText()));        
+        servico.setValor(txtValor.getText());        
         servicoDao.create(servico);
         
         txtNome.setText("");
@@ -122,7 +122,7 @@ public class CadastroServico extends javax.swing.JFrame {
         ServicoDAO servicoDao = new ServicoDAO(con);
         
         servico.setNome(txtNome.getText());
-        servico.setValor(Double.parseDouble(txtValor.getText()));        
+        servico.setValor(txtValor.getText());        
         servicoDao.delete(servico);
         
         txtNome.setText("");

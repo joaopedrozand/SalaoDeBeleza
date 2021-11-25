@@ -161,9 +161,9 @@ Conexao conecta = new Conexao();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarActionPerformed
-       Object nome_cliente =  CaixaNome.getSelectedItem();
-       Object nome_servico =  CaixaServico.getSelectedItem();
-       Object valor = CaixaValor.getSelectedItem();
+       int id_cliente =  CaixaNome.getSelectedIndex();
+       int id_servico =  CaixaServico.getSelectedIndex();
+       String valor = CaixaValor.getSelectedItem().toString();
        String data = CaixaData.getText();
        String hora = CaixaHora.getText();
         
@@ -172,9 +172,9 @@ Conexao conecta = new Conexao();
         Connection con = Conexao.getConnection();
         AgendamentoDAO agendamentoDao = new AgendamentoDAO(con);
         
-        agendamento.setCliente(CaixaNome.getSelectedItem());
-        agendamento.setServico(CaixaServico.getSelectedItem());       
-        agendamento.setValor(CaixaValor.getSelectedItem());  
+        agendamento.setId_Cliente(CaixaNome.getSelectedIndex());
+        agendamento.setId_Servico(CaixaServico.getSelectedIndex());     
+        agendamento.setValor(CaixaValor.getSelectedItem().toString());  
         agendamento.setData(CaixaData.getText()); 
         agendamento.setHora(CaixaHora.getText()); 
         agendamentoDao.create(agendamento);
@@ -246,7 +246,7 @@ Conexao conecta = new Conexao();
     private javax.swing.JTextField CaixaHora;
     private javax.swing.JComboBox<Object> CaixaNome;
     private javax.swing.JComboBox<Object> CaixaServico;
-    private javax.swing.JComboBox<Object> CaixaValor;
+    private javax.swing.JComboBox<String> CaixaValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

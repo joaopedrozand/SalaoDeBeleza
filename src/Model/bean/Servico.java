@@ -13,7 +13,9 @@ public class Servico {
     
     private int id;
     private String nome;
-    private double valor;
+    private String valor;
+
+   
 
     public int getId() {
         return id;
@@ -31,11 +33,11 @@ public class Servico {
         this.nome = nome;
     }
 
-    public double getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 

@@ -18,9 +18,9 @@ import java.util.logging.Logger;
 public class Agendamento {
     
     private int id;
-    private Cliente cliente;
-    private Servico servico;
-    private float valor;
+    private int id_cliente;
+    private int id_servico;
+    private String valor;
     private String data;
     private String hora;
 
@@ -32,27 +32,27 @@ public class Agendamento {
         this.id = id;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public int getId_Cliente() {
+        return id_cliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setId_Cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
-    public Servico getServico() {
-        return servico;
+    public int getId_Servico() {
+        return id_servico;
     }
 
-    public void setServico(Servico servico) {
-        this.servico = servico;
+    public void setId_Servico(int servico) {
+        this.id_servico = id_servico;
     }
 
-    public float getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 
