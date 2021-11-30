@@ -161,8 +161,8 @@ Conexao conecta = new Conexao();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotaoCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarActionPerformed
-       int id_cliente =  CaixaNome.getSelectedIndex();
-       int id_servico =  CaixaServico.getSelectedIndex();
+       String nome_cliente =  CaixaNome.getSelectedItem().toString();
+       String nome_servico =  CaixaServico.getSelectedItem().toString();
        String valor = CaixaValor.getSelectedItem().toString();
        String data = CaixaData.getText();
        String hora = CaixaHora.getText();
@@ -172,11 +172,11 @@ Conexao conecta = new Conexao();
         Connection con = Conexao.getConnection();
         AgendamentoDAO agendamentoDao = new AgendamentoDAO(con);
         
-        agendamento.setId_Cliente(CaixaNome.getSelectedIndex());
-        agendamento.setId_Servico(CaixaServico.getSelectedIndex());     
-        agendamento.setValor(CaixaValor.getSelectedItem().toString());  
-        agendamento.setData(CaixaData.getText()); 
-        agendamento.setHora(CaixaHora.getText()); 
+        agendamento.setNome_Cliente(nome_cliente);
+        agendamento.setNome_Servico(nome_servico);     
+        agendamento.setValor(valor);  
+        agendamento.setData(data); 
+        agendamento.setHora(hora); 
         agendamentoDao.create(agendamento);
         
         CaixaNome.setSelectedItem("");
