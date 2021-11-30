@@ -18,8 +18,8 @@ import java.util.logging.Logger;
 public class Agendamento {
     
     private int id;
-    private int id_cliente;
-    private int id_servico;
+    private String nome_cliente;
+    private String nome_servico;
     private String valor;
     private String data;
     private String hora;
@@ -32,20 +32,20 @@ public class Agendamento {
         this.id = id;
     }
 
-    public int getId_Cliente() {
-        return id_cliente;
+    public String getNome_Cliente() {
+        return nome_cliente;
     }
 
-    public void setId_Cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setNome_Cliente(String nome_cliente) {
+        this.nome_cliente = nome_cliente;
     }
 
-    public int getId_Servico() {
-        return id_servico;
+    public String getNome_Servico() {
+        return nome_servico;
     }
 
-    public void setId_Servico(int servico) {
-        this.id_servico = id_servico;
+    public void setNome_Servico(String nome_servico) {
+        this.nome_servico = nome_servico;
     }
 
     public String getValor() {
