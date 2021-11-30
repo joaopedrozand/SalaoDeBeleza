@@ -51,8 +51,8 @@ public class VisualizaAgendamentos extends javax.swing.JFrame {
         for(Agendamento a: adao.read()){
             modelo.addRow(new Object[]{
                 a.getId(),
-                a.getId_Cliente(),
-                a.getId_Servico(),
+                a.getNome_Cliente(),
+                a.getNome_Servico(),
                 a.getData(),
                 a.getHora()
             });
