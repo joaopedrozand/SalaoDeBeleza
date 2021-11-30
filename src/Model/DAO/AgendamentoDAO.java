@@ -35,15 +35,8 @@ public class AgendamentoDAO {
      public void create(Agendamento agendamento){
         Connection con = Conexao.getConnection();
         PreparedStatement stmt = null;
-         
          try {
-            stmt = con.prepareStatement("INSERT INTO agendamento (id_cliente,id_servico,valor,data,hora)VALUES(?,?,?,?,?)");
-            stmt.setInt(1, agendamento.getId_Cliente());
-            stmt.setInt(2, agendamento.getId_Servico());
-            stmt.setString(3, agendamento.getValor());
-            stmt.setString(4, agendamento.getData());
-            stmt.setString(5, agendamento.getHora());
-
+            stmt = con.prepareStatement("INSERT INTO agendamento (nome_cliente, nome_servico, valor, data, hora)VALUES('"+agendamento.getNome_Cliente()+"','"+agendamento.getNome_Servico()+"','"+agendamento.getValor()+"','"+agendamento.getData()+"','"+agendamento.getHora()+"');");
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Agendado com sucesso!");
@@ -62,8 +55,8 @@ public class AgendamentoDAO {
 
         try {
             stmt = con.prepareStatement("UPDATE agendamento SET nome_cliente = ? ,nome_servico = ?, valor = ?, data = ?, hora = ? WHERE id = ?");
-            stmt.setObject(1, agendamento.getId_Cliente());
-            stmt.setObject(2, agendamento.getId_Servico());
+            stmt.setObject(1, agendamento.getNome_Cliente());
+            stmt.setObject(2, agendamento.getNome_Servico());
             stmt.setString(3, agendamento.getValor());
             stmt.setString(4, agendamento.getData());
             stmt.setString(5, agendamento.getHora());
@@ -120,8 +113,8 @@ public class AgendamentoDAO {
             Agendamento agendamento = new Agendamento();
             
             agendamento.setId(rs.getInt("id"));
-            agendamento.setId_Cliente(rs.getInt("nome_cliente"));
-            agendamento.setId_Servico(rs.getInt("nome_servico"));
+            agendamento.setNome_Cliente(rs.getString("nome_cliente"));
+            agendamento.setNome_Servico(rs.getString("nome_servico"));
             agendamento.setValor((rs.getString("valor")));
             agendamento.setData(rs.getString("data"));
             agendamento.setHora(rs.getString("hora"));
