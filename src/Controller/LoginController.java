@@ -27,7 +27,7 @@ public class LoginController {
         this.view = view;
     }
 
-    public void autenticar() throws SQLException {
+    public boolean autenticar() throws SQLException {
         //Busca usuario
         String login = view.getCaixaUsuario().getText();
         String senha = view.getCaixaSenha().getText();
@@ -44,8 +44,10 @@ public class LoginController {
         if(existe){
             Menu telaMenu = new Menu();
             telaMenu.setVisible(true);
+            return true;
         }else{
             JOptionPane.showMessageDialog(view, "Usuário ou senha inválidos");
+            return false;
         }
         
         
